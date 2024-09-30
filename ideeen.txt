@@ -1,5 +1,0 @@
-tic tac toe
-rock paper siscors
-rekenmachine
-password generator
-qr code generator

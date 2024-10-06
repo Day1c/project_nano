@@ -101,6 +101,9 @@ Available games:                 Available apps:
                     if again == "no":
                         break
 
+        elif play_game == 4:
+            pass
+
         elif play_game == 5:
             os.system('clear')
             print("You chose the game '\u001b[41mRock, paper ,scissors\u001b[0m'!!!\n")

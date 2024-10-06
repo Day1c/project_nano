@@ -74,6 +74,13 @@ def hangman_pics():
     =========''']
     return figure
 
+# def display_text(picture):
+#     root = customtkinter.CTk()
+#     root.geometry("200x200")
+#     text_label = customtkinter.CTkLabel(root, text=f"{picture}")
+#     text_label.pack(pady=20)
+#     text_label.lift()
+
 def players():
     while True:
         print("""\u001b[32m  ______ __             __                          _                                        
@@ -162,7 +169,7 @@ In 5 seconds you can give the laptop to the other player.""")
     guessed = []
     while attempts < max_tries:
         while True:
-            print (hangman_pics()[attempts])
+            print(hangman_pics()[attempts])
             hidden_word(word_completion)
             # print(player_word) ##This is to test the code and show the word
             guess = input("Guess a letter or a word: ").lower()

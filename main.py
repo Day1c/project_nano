@@ -121,7 +121,6 @@ Available games:                 Available apps:
                     if again == "no":
                         break
 
-
 def get_time():
     format_time = datetime.now()
     date = format_time.strftime('%d/%m/%Y')

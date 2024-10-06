@@ -1,4 +1,5 @@
 import random,os,time, tkinter, customtkinter
+from datetime import datetime
 
 def return_main():
     times = 0
@@ -74,12 +75,27 @@ def hangman_pics():
     =========''']
     return figure
 
-# def display_text(picture):
-#     root = customtkinter.CTk()
-#     root.geometry("200x200")
-#     text_label = customtkinter.CTkLabel(root, text=f"{picture}")
-#     text_label.pack(pady=20)
-#     text_label.lift()
+def get_time():
+    format_time = datetime.now()
+    date = format_time.strftime('%d/%m/%Y')
+    current_time = format_time.strftime('%H:%M:%S')
+    return date,current_time
+
+def user_log(attempts, passed):
+    print("You can now put your score with your name in a log if you dont want to give ur name you can press enter to be unknown.")
+    tries = attempts
+    while True:
+        user_name = input("Please give ur name: ").capitalize()
+        if user_name.strip() == "":
+            user_name = "Unknown"
+            break
+        if not user_name.isalpha():
+            os.system("clear")
+            print("This is not a valid name")
+            continue
+        break
+    with open("/Users/dewan/School/project nano/logs/galgje_log.txt","a") as f:
+        f.write(f"\nUser name: {user_name}, guessed the word: {passed}, times guessed: {tries}, date: {get_time()[0]}")
 
 def players():
     while True:
@@ -257,15 +273,17 @@ def play_solo(from_list):
         while True:
             print (hangman_pics()[attempts])
             hidden_word(word_completion)
-            #print(random_word) ##test code and show the word
+            print(random_word) ##test code and show the word
             guess = input("Guess a letter or a word: ").lower()
             os.system("clear")
             if not guess.isalpha():
                 print(f"""\u001b[31mPlease give a valid guess\u001b[0m\n
 You have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.""")
                 continue
-            if len(guess) !=1 and guess == random_word:
-                print(f"Congratulations you guessed the word '{random_word}' with {attempts} mistake(s)!!")
+            if guess == random_word:
+                print(f"\u001b[32mCongratulations you guessed the word '{random_word}' with {attempts} mistake(s)!!\u001b[0m\n")
+                passed = "yes"
+                user_log(attempts, passed)
                 return "play_again"
             if len(guess) != 1 and len(guess) != len(random_word):    
                 print(f"""\u001b[31mYou need to guess a letter or a word that has the length of {len(random_word)}\u001b[0m\n
@@ -290,6 +308,8 @@ You have guessed the letters {guessed} and you have {max_tries - attempts} attem
             word = "".join(word_completion).lower()
             if word == random_word:
                 print(f"\u001b[32mCongratulations, you guessed all the letters in {random_word} and it was correct!! You did this with {max_tries - attempts} attempt(s) left\u001b[0m\n")
+                passed = "yes"
+                user_log(attempts, passed)
                 return "play_again"
         guessed.append(guess)
         guessed.sort()
@@ -298,6 +318,7 @@ You have guessed the letters {guessed} and you have {max_tries - attempts} attem
 
     if attempts >= max_tries:
         os.system("clear")
+        passed = "no"
         print(f"""\nThe word was '{random_word}'. You killed the hanging man??
 
     +---+
@@ -306,9 +327,8 @@ You have guessed the letters {guessed} and you have {max_tries - attempts} attem
    \u001b[31m/|\ \u001b[0m |
    \u001b[31m/ \ \u001b[0m |
         |
-    =========
-              
-You dont have any more tries left. If think you can beat me play again!""")
+    =========\n""")
+        user_log(attempts, passed)
         return "play_again"
 
 if __name__ == ("__main__"):

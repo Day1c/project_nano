@@ -182,6 +182,7 @@ def main_weather():
 /_/ /_/ /_/\___/    |__/|__/\___/\__,_/\__/_/ /_/\___/_/      \__,_/ .___/ .___/ 
                                                                   /_/   /_/ \u001b[0m
 Welcome to '\u001b[45mThe weather app\u001b[0m'
+              
 (1) Get temperature in location closest to you
 (2) Get temperature in chosen location
 (3) What do I have to wear today?

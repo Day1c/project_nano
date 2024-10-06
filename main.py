@@ -23,7 +23,7 @@ Welcome to \u001b[1mPlay2Day!\u001b[0m
 
 Available games:                 Available apps:
 (1) \u001b[44mGuess that number\u001b[0m            (2) \u001b[45mThe weather app\u001b[0m 
-(3) \u001b[42mThe hanging man\u001b[0m              (4) 
+(3) \u001b[42mThe hanging man\u001b[0m              (4) \u001b[40m...\u001b[0m
 (5) \u001b[41mRock, paper ,scissors\u001b[0m        (6)
 (7) Coming soon...
 """  
@@ -44,7 +44,7 @@ Available games:                 Available apps:
         if play_game == 1:
             os.system('clear')
             print("You chose the game '\u001b[44mGuess that number\u001b[0m'!!!\n")
-            time.sleep(2)
+            time.sleep(1.5)
             os.system("clear")
             while True:
                 result = guess_it()
@@ -57,8 +57,8 @@ Available games:                 Available apps:
 
         elif play_game == 2:
             os.system('clear')
-            print("You chose the game '\u001b[45mThe weather app\u001b[0m'!!!\n")
-            time.sleep(2)
+            print("You chose the app '\u001b[45mThe weather app\u001b[0m'!!!\n")
+            time.sleep(1.5)
             os.system("clear")
             main_weather()
 
@@ -102,12 +102,15 @@ Available games:                 Available apps:
                         break
 
         elif play_game == 4:
-            pass
+            os.system('clear')
+            print("You chose the app '\u001b[40m...\u001b[0m'!!!\n")
+            time.sleep(1.5)
+            os.system("clear")
 
         elif play_game == 5:
             os.system('clear')
             print("You chose the game '\u001b[41mRock, paper ,scissors\u001b[0m'!!!\n")
-            time.sleep(2)
+            time.sleep(1.5)
             os.system("clear")
             while True:
                 result = main_rps()

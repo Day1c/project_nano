@@ -1,4 +1,5 @@
-import random,os,time                   #imports all the modules we need to run this python file
+import random,os,time  
+from datetime import datetime
 
 def return_main():
     times = 0
@@ -11,12 +12,35 @@ def return_main():
         time.sleep(1)
         os.system('clear')
 
+def get_time():
+    format_time = datetime.now()
+    date = format_time.strftime('%d/%m/%Y')
+    current_time = format_time.strftime('%H:%M:%S')
+    return date,current_time
+
+def user_log(attempts,passed):
+    print("\nYou can now put your score with your name in a log if you dont want to give ur name you can press enter to be unknown.")
+    while True:
+        user_name = input("Please give ur name: ").capitalize()
+        if user_name.strip() == "":
+            user_name = "Unknown"
+            break
+        if not user_name.isalpha():
+            os.system("clear")
+            print("This is not a valid name")
+            continue
+        break
+    with open("/Users/dewan/School/project nano/logs/rng_log.txt","a") as f:
+        f.write(f"\nUser name: {user_name}, times guessed: {attempts}, guessed the number: {passed}, date: {get_time()[0]}")
+
+
 def guess_it():
     number = random.randint(0,100)         
     max_tries = 10                          
     attempts = 0                                         
     guessed_numbers = []                    
-    print(""" \u001b[34m  ______                            __   __            __                              __               
+    print(f"""\u001b[1m{get_time()[0]} {get_time()[1]}\u001b[0m
+\u001b[34m   ______                            __   __            __                              __               
   / ____/__  __ ___   _____ _____   / /_ / /_   ____ _ / /_   ____   __  __ ____ ___   / /_   ___   _____
  / / __ / / / // _ \ / ___// ___/  / __// __ \ / __ `// __/  / __ \ / / / // __ `__ \ / __ \ / _ \ / ___/
 / /_/ // /_/ //  __/(__  )(__  )  / /_ / / / // /_/ // /_   / / / // /_/ // / / / / // /_/ //  __// /    
@@ -55,36 +79,18 @@ Welcome to the game '\u001b[44mGuess that number\u001b[0m'\n
             attempts += 1
         else:
             os.system('clear')
-            print(f"""\u001b[32mCongratulations, you guessed {guess} and it was correct!! You did this with {max_tries - attempts -1 } attempt(s)
-\u001b[32m
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⣀⣠⢤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢘⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⣀⡔⡿⠞⠓⠉⠉⠳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⣔⡿⡏⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡤⣲⣒⣆⡀⠀⠀⠀⣠⣶⡻⣿⣦⠀⠀⠀⠀⣠⣺⣯⡛⢗⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⢰⠬⡯⡎⠀⠀⠤⠄⠠⡀⡤⣺⣄⠀⠀⠀⠀⠀⣷⠏⠉⡋⢯⠀⠀⢀⢟⠇⠀⠀⣸⡏⠀⠀⠀⣿⠋⠀⢀⣯⡷⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡄⠀⠀⠀
-⢸⣿⣧⡅⠀⠀⠈⠁⠉⠉⠉⣻⡫⡄⠀⠀⠀⢸⣯⠉⠉⣼⠇⠀⠀⠈⣾⣇⣰⢿⠍⠀⠀⠀⣾⡯⠭⠿⡝⣿⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⠚⠀⠀⠀⠀
-⠘⢿⣽⣃⠀⠀⠀⠀⠀⠀⠀⠀⣡⠷⡁⠀⠀⠀⠀⠈⠉⠋⠃⠀⠀⠀⠀⠀⠀⠓⠋⠀⠀⠀⠀⠀⠀⠉⠉⠁⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⠏⠀⠀
-⠀⠀⠻⢷⣷⣄⠄⢤⣢⡆⣿⣶⠿⡏⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠸⡪⡁⠀
-⠀⠀⠀⠀⠀⠉⠛⠏⢿⡷⡾⠯⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⡶⠼⠞⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡖⡄⠀⠀⠀⠀⠀⠀⠀⢨⡵⠄⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠒⠋⠉⠉⠀⠀⠀⢷⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣻⡅⠀⠀⠀⠀⠀⠀⠀⠐⣫⠒⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡷⣸⡁⠀⠀⠀⠀⠀⡀⡔⠶⣦⠀⠀⠀⠀⢨⡠⢃⡠⣴⡒⡦⠀⠀⠠⢪⡇⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠃⡰⠇⠀⠀⠀⠀⡰⠽⠷⢲⠀⡷⠀⠀⠀⢠⡁⡎⠏⠀⠀⢍⠯⠀⠀⢂⣿⡇⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡃⡛⠉⡂⠀⠀⠀⢺⠖⠀⠀⠀⡁⠏⠀⠀⠀⠘⠇⢌⠁⠀⠀⠀⣿⠁⠀⠀⣽⣻⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⣆⠀⠀⠀⠀⠀⠀⡜⡘⠌⠠⠃⠀⠀⠀⡦⠷⡇⠤⡤⢋⠁⠀⠀⠀⢈⠊⢶⠀⠀⠀⣌⡇⠀⠀⠀⠀⡟⠃⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠪⣏⠣⡀⠀⠀⠀⠎⢧⡣⠅⠁⠀⠀⠀⠀⠣⢄⣛⡋⠒⠀⠀⠀⠀⠀⢠⣗⡇⠀⣠⠎⡂⠀⠀⠀⠀⠀⠁⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢏⠑⠞⠶⡒⡣⠟⠍⠅⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠧⠿⠭⠒⠁⠀⠀⠀⠀⣼⠯⣷⠄⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠈⠈⠉⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠁
-\u001b[0m
-""")
-            time.sleep(4)
-            os.system('clear')
+            print(f"""\u001b[32mCongratulations, you guessed {guess} and it was correct!! You did this with {max_tries - attempts -1 } attempt(s)\u001b[0m""")
+            passed = "yes"
+            user_log(attempts,passed)
             return "play_again"
 
         guessed_numbers.append(guess)
         guessed_numbers.sort()
         print(f"\nYou guessed the numbers {guessed_numbers} and still got {max_tries-attempts} tries left.\n")
     if attempts >=max_tries:
+        passed = "no"
         print("You have no more tries left ggs! If you want to try ur luck play again!")
+        user_log(attempts,passed)
         return "play_again"
 
 if __name__ == ("__main__"):

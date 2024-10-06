@@ -1,4 +1,5 @@
 import os, random, time
+from datetime import datetime
 
 def display_hand_player():
 
@@ -29,6 +30,27 @@ def display_hand_player():
     ---.__(___)
     """]
     return hands
+
+def get_time():
+    format_time = datetime.now()
+    date = format_time.strftime('%d/%m/%Y')
+    current_time = format_time.strftime('%H:%M:%S')
+    return date,current_time
+
+def user_log(score_player, score_npc, won):
+    print("You can now put your score with your name in a log if you dont want to give ur name you can press enter to be unknown.")
+    while True:
+        user_name = input("Please give ur name: ").capitalize()
+        if user_name.strip() == "":
+            user_name = "Unknown"
+            break
+        if not user_name.isalpha():
+            os.system("clear")
+            print("This is not a valid name")
+            continue
+        break
+    with open("/Users/dewan/School/project nano/logs/rock_paper_scissors_log.txt","a") as f:
+        f.write(f"\nUser name: {user_name}, won the game: {won}, player score: {score_player}, npc score: {score_npc}, date: {get_time()[0]}")
 
 def display_hand_npc():
     hands = ["""
@@ -75,7 +97,8 @@ def main_rps():
     score_npc = 0
     answers = {"rock" : 0, "paper" : 1, "scissors" : 2}
 
-    print("""\u001b[31m    ____             __                                                   _                          
+    print(f"""\u001b[1m{get_time()[0]} {get_time()[1]}\u001b[0m
+\u001b[31m    ____             __                                                   _                          
    / __ \____  _____/ /__     ____  ____ _____  ___  _____     __________(_)_____________  __________
   / /_/ / __ \/ ___/ //_/    / __ \/ __ `/ __ \/ _ \/ ___/    / ___/ ___/ / ___/ ___/ __ \/ ___/ ___/
  / _, _/ /_/ / /__/ ,< _    / /_/ / /_/ / /_/ /  __/ /     _ (__  ) /__/ (__  |__  ) /_/ / /  (__  ) 
@@ -127,8 +150,12 @@ Welcome to the game '\u001b[41mRock, paper ,scissors\u001b[0m'\n """)
             print(f"{player_line:23} {npc_line}")
     if score_npc > 2:
         print("You lost the game of '\u001b[41mRock, paper ,scissors\u001b[0m'. Try again if you think you can beat me hehehe.")
+        won = "no"
+        user_log(score_player, score_npc, won)
     else:
         print(f"Congratulations you won '\u001b[41mRock, paper ,scissors\u001b[0m' against me.")
+        won = "yes"
+        user_log(score_player, score_npc, won)
     return "play_again"
 
 if __name__ == "__main__":

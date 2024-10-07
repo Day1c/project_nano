@@ -1,7 +1,7 @@
 tic tac toe
-rock paper siscors
+#rock paper siscors
 rekenmachine
 password generator
 qr code generator
-weather app
-username, score games
+#weather app
+#username, score games

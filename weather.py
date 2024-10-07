@@ -24,12 +24,6 @@ def info():
     lon = []
     locations = {}
 
-    # place = 0
-
-    # ip = f"https://ipapi.co/json/"
-    # response = requests.get(ip)
-    # place = response.json()
-
     api_key = "0ff25058ab7c4eb7943b6f129e7ce00c"
     ip = f"https://api.ipgeolocation.io/ipgeo?apiKey={api_key}"
     response = requests.get(ip)
@@ -39,9 +33,6 @@ def info():
     current_city = place["city"]
     current_lat = float((place["latitude"]))
     current_lon = float(place["longitude"])
-    # current_city = "Lelystad"
-    # current_lat = 51.9627
-    # current_lon = 6.2603
 
     weather = "https://data.buienradar.nl//2.0/feed/json"
     response1 = requests.get(weather)
@@ -50,7 +41,8 @@ def info():
     for response in response_data['actual']['stationmeasurements']:
         if response["regio"] in regions:
             continue
-        regions.append(response["regio"])
+        if "temperature" in response:
+            regions.append(response["regio"])
     
     for response in response_data['actual']['stationmeasurements']:
         lat.append(response["lat"])

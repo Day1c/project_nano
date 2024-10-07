@@ -24,7 +24,7 @@ Welcome to \u001b[1mPlay2Day!\u001b[0m
 Available games:                 Available apps:
 (1) \u001b[44mGuess that number\u001b[0m            (2) \u001b[45mThe weather app\u001b[0m 
 (3) \u001b[42mThe hanging man\u001b[0m              (4) \u001b[40m...\u001b[0m
-(5) \u001b[41mRock, paper ,scissors\u001b[0m        (6)
+(5) \u001b[41mRock, paper ,scissors\u001b[0m        (6) Coming soon...
 (7) Coming soon...
 """  
 + "_" * 75)

@@ -47,14 +47,14 @@ def info():
     response1 = requests.get(weather)
     response_data = response1.json()
 
-    for i in response_data['actual']['stationmeasurements']:
-        if i["regio"] in regions:
+    for response in response_data['actual']['stationmeasurements']:
+        if response["regio"] in regions:
             continue
-        regions.append(i["regio"])
+        regions.append(response["regio"])
     
-    for i in response_data['actual']['stationmeasurements']:
-        lat.append(i["lat"])
-        lon.append(i["lon"])
+    for response in response_data['actual']['stationmeasurements']:
+        lat.append(response["lat"])
+        lon.append(response["lon"])
         
     for i in range(len(regions)):
         locations[regions[i]] = lat[i], lon[i]
@@ -86,14 +86,14 @@ def region_names():
             stations5.append(regions[i])
             continue
         stations4.append(regions[i])
-    rijen = []
+    rows = []
     print("Every region you can choose from:")
     for a,b,c,d in zip (stations1,stations2,stations3,stations4):
-        rijen.append(f"{a:20} | {b:20} | {c:20} | {d:20}")
+        rows.append(f"{a:20} | {b:20} | {c:20} | {d:20}")
     for i in range(len(stations5)):
-        rijen[i] = (f"{rijen[i]}| {stations5[i]}")
-    for i in rijen:
-        print (i)
+        rows[i] = (f"{rows[i]}| {stations5[i]}")
+    for row in rows:
+        print (row)
     
 def choose_region():
     while True:
@@ -105,17 +105,6 @@ def choose_region():
         region_names()
         print("\n\u001b[31mThis was not a valid answer\u001b[0m")
     return choose
-    
-def region_weather(region_chosen):
-
-    all_data = info()[0]
-    for i in all_data['actual']['stationmeasurements']:
-        if region_chosen == i["regio"]:
-            try:
-                temperature = i['temperature']
-                return temperature
-            except ValueError:
-                continue
 
 """ #1 degree = 111 km NS, 68 km EW (the proportion is 0.61, the cosine of the latitude)
 #https://www.mapsofworld.com/lat_long/netherlands-lat-long.html """
@@ -209,9 +198,9 @@ The closest city is {closest_region} and is {min_distance:.2f} KM away.
 The temperature in that city is {current_weather(closest_region)} degrees Celcius.\u001b[0m\n""")
         elif choice == 2:
             region_names()
-            region_chosen = choose_region()
+            closest_region = choose_region()
             os.system("clear")
-            print(f"\u001b[35mThe temperature in {region_chosen} right now is {region_weather(region_chosen)} degrees Celcius.\u001b[0m\n")
+            print(f"\u001b[35mThe temperature in {closest_region} right now is {current_weather(closest_region)} degrees Celcius.\u001b[0m\n")
         elif choice == 3:
             city = f"{info()[2]}"
             closest_region = closest_location()[0]

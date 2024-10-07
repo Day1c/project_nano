@@ -33,7 +33,6 @@ def user_log(attempts,passed):
     with open("/Users/dewan/School/project nano/logs/rng_log.txt","a") as f:
         f.write(f"\nUser name: {user_name}, times guessed: {attempts}, guessed the number: {passed}, date: {get_time()[0]}")
 
-
 def guess_it():
     number = random.randint(0,100)         
     max_tries = 10                          

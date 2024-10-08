@@ -3,8 +3,6 @@ from datetime import datetime
 
 def return_main():
     times = 0
-    print("\nYou will be directed to the main menu!")
-    time.sleep(1)
     os.system('clear')
     for x in range(4):
         times += 1
@@ -14,22 +12,12 @@ def return_main():
 
 def get_time():
     format_time = datetime.now()
-    date = format_time.strftime('%d/%m/%Y')
-    current_time = format_time.strftime('%H:%M:%S')
-    return date,current_time
+    return format_time.strftime('%d/%m/%Y'), format_time.strftime('%H:%M:%S')
 
 def user_log(attempts,passed):
-    print("\nYou can now put your score with your name in a log if you dont want to give ur name you can press enter to be unknown.")
-    while True:
-        user_name = input("Please give ur name: ").capitalize()
-        if user_name.strip() == "":
-            user_name = "Unknown"
-            break
-        if not user_name.isalpha():
-            os.system("clear")
-            print("This is not a valid name")
-            continue
-        break
+    user_name = input("Please give ur name to log ur score (or press enter to be unknown): ").capitalize()
+    if user_name.strip() == "":
+        user_name = "Unknown"
     with open("/Users/dewan/School/project nano/logs/rng_log.txt","a") as f:
         f.write(f"\nUser name: {user_name}, times guessed: {attempts}, guessed the number: {passed}, date: {get_time()[0]}")
 

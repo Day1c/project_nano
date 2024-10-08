@@ -11,7 +11,6 @@ def display_hand_player():
           (____)
     ---.__(___)
     """,
-
     """
         _______
     ---'    ____)____
@@ -20,7 +19,6 @@ def display_hand_player():
              _______)
     ---.__________)
     """,
-
     """
         _______
     ---'   ____)____
@@ -33,22 +31,12 @@ def display_hand_player():
 
 def get_time():
     format_time = datetime.now()
-    date = format_time.strftime('%d/%m/%Y')
-    current_time = format_time.strftime('%H:%M:%S')
-    return date,current_time
+    return format_time.strftime('%d/%m/%Y'), format_time.strftime('%H:%M:%S')
 
 def user_log(score_player, score_npc, won):
-    print("You can now put your score with your name in a log if you dont want to give ur name you can press enter to be unknown.")
-    while True:
-        user_name = input("Please give ur name: ").capitalize()
-        if user_name.strip() == "":
-            user_name = "Unknown"
-            break
-        if not user_name.isalpha():
-            os.system("clear")
-            print("This is not a valid name")
-            continue
-        break
+    user_name = input("Please give ur name to log ur score (or press enter to be unknown): ").capitalize()
+    if user_name.strip() == "":
+        user_name = "Unknown"
     with open("/Users/dewan/School/project nano/logs/rock_paper_scissors_log.txt","a") as f:
         f.write(f"\nUser name: {user_name}, won the game: {won}, player score: {score_player}, npc score: {score_npc}, date: {get_time()[0]}")
 
@@ -83,9 +71,7 @@ def display_hand_npc():
 
 def return_main():
     times = 0
-    print("\nYou will be directed to the main menu!")
-    time.sleep(1)
-    os.system('clear')
+    os.system("clear")
     for x in range(4):
         times += 1
         print("Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n" +"." * times)
@@ -110,9 +96,7 @@ Welcome to the game '\u001b[41mRock, paper ,scissors\u001b[0m'\n """)
 
         npc_choice = random.choice(list(answers.keys()))
         npc_answer = answers[npc_choice]
-
         player_choice = input("What would you like to choose? rock/paper/scissors (press q to quit): ").lower()
-        
         os.system("clear")
         if not player_choice.isalpha():
             print("\u001b[31mPlease give a valid answer.\u001b[0m\n")
@@ -131,7 +115,6 @@ Welcome to the game '\u001b[41mRock, paper ,scissors\u001b[0m'\n """)
 
         player_answer = answers[player_choice]
 
-        
         if eval("player_answer == npc_answer"):
             print(f"You chose {player_choice} and so did the oponent. Its a draw!\n")
         elif player_answer == 0 and npc_answer == 1 or player_answer == 1 and npc_answer == 2 or player_answer == 2 and npc_answer == 0:
@@ -148,7 +131,7 @@ Welcome to the game '\u001b[41mRock, paper ,scissors\u001b[0m'\n """)
 
         for player_line, npc_line in zip(player_hand, npc_hand):
             print(f"{player_line:23} {npc_line}")
-    if score_npc > 2:
+    if score_npc == 2:
         print("You lost the game of '\u001b[41mRock, paper ,scissors\u001b[0m'. Try again if you think you can beat me hehehe.")
         won = "no"
         user_log(score_player, score_npc, won)

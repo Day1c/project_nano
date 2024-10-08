@@ -51,7 +51,7 @@ Available games:                 Available apps:
                 if result == "quit":
                     break
                 else:
-                    again = play_again()
+                    again = play_again('\u001b[44mGuess that number\u001b[0m')
                     if again == "no":
                         break
 
@@ -77,29 +77,24 @@ Available games:                 Available apps:
                         break
                     elif result2 == "easy":
                         easy()
-                        again = play_again()
+                        again = play_again('\u001b[42mThe hanging man\u001b[0m')
                         if again == "no":
                             break
                     elif result2 == "medium":
                         medium()
-                        again = play_again()
+                        again = play_again('\u001b[42mThe hanging man\u001b[0m')
                         if again == "no":
                             break                        
                     else:
                         hard()
-                        again = play_again()
+                        again = play_again('\u001b[42mThe hanging man\u001b[0m')
                         if again == "no":
                             break
-                
-                elif result == "duo":
+                else:
                     duo()
-                    again = play_again()
+                    again = play_again('\u001b[42mThe hanging man\u001b[0m')
                     if again == "no":
                         break 
-                else:
-                    again = play_again()
-                    if again == "no":
-                        break
 
         elif play_game == 4:
             os.system('clear')
@@ -117,7 +112,7 @@ Available games:                 Available apps:
                 if result == "quit":
                     break
                 else:
-                    again = play_again()
+                    again = play_again('\u001b[41mRock, paper ,scissors\u001b[0m')
                     if again == "no":
                         break
 
@@ -127,7 +122,7 @@ def get_time():
     current_time = format_time.strftime('%H:%M:%S')
     return date,current_time
 
-def play_again():
+def play_again(game):
     loading = 0
     while True:
         again = input("\nDo you want to play again? Y/N" ).upper()
@@ -140,7 +135,7 @@ def play_again():
             os.system('clear')
             for x in range(4):
                 loading += 1
-                print("Redirecting to another game!!!\n" +"." * loading)
+                print(f"Redirecting to another game of {game}!!!\n{"." * loading}")
                 time.sleep(1)
                 os.system('clear')
             return "yes"
@@ -151,7 +146,7 @@ def play_again():
             os.system('clear')
             for x in range(4):
                 loading += 1
-                print("Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n" +"." * loading)
+                print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * loading}")
                 time.sleep(1)
                 os.system('clear')
             return "no"

@@ -3,15 +3,11 @@ from datetime import datetime
 
 def get_time():
     format_time = datetime.now()
-    date = format_time.strftime('%d/%m/%Y')
-    current_time = format_time.strftime('%H:%M:%S')
-    return date,current_time
+    return format_time.strftime('%d/%m/%Y'), format_time.strftime('%H:%M:%S')
 
 def return_main():
     times = 0
-    print("\nYou will be directed to the main menu!")
-    time.sleep(1)
-    os.system('clear')
+    os.system("clear")
     for x in range(4):
         times += 1
         print("Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n" +"." * times)

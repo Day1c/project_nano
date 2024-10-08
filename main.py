@@ -5,7 +5,7 @@ from galgje import *
 from weather import *
 from datetime import datetime
 from rock_paper_scissors import main_rps
-import os,time, tkinter as tk, customtkinter as ctk
+import os,time
 
 def main_menu():
     os.system('clear')

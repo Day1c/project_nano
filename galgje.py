@@ -110,17 +110,15 @@ Welcome to '\u001b[42mThe hanging man\u001b[0m' """)
         if player_count == "q":
             return_main()
             return "quit"
-        try:
-            player_count = int(player_count)
-            if player_count <1 or player_count >2:
-                os.system('clear')
-                print("This was not an option.\n")
-                continue
-            break
-
-        except ValueError:
+        if not player_count.isdigit():
+            print("Please give a number")
+            continue
+        if player_count <1 or player_count >2:
             os.system('clear')
-            print("You did not give a valid answer.\n")
+            print("This was not an option.\n")
+            continue
+        player_count = int(player_count)
+        break
     os.system("clear")
     if player_count == 1:
         print("You chose to play '\u001b[42mThe hanging man\u001b[0m' alone!\n")
@@ -146,7 +144,6 @@ def difficulty():
         except ValueError:
             os.system('clear')
             print("You did not give a valid answer. Try again!\n")
-
         
     if user_difficulty == 1:
         os.system('clear')
@@ -179,93 +176,32 @@ In 5 seconds you can give the laptop to the other player.""")
             os.system("clear")
             break
 
-    word_completion = (len(player_word)) * ["_"] 
-    attempts = 0
-    max_tries = 7
-    guessed = []
-    while attempts < max_tries:
-        while True:
-            print (hangman_pics()[attempts])
-            hidden_word(word_completion)
-            # print(player_word) ##test code and show the word
-            guess = input("Guess a letter or a word: ").lower()
-            os.system("clear")
-            if not guess.isalpha():
-                print(f"""\u001b[31mPlease give a valid guess\u001b[0m\n
-You have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.""")
-                continue
-            if guess == player_word:
-                print(f"\u001b[32mCongratulations you guessed the word '{player_word}' with {attempts} mistake(s)!!\u001b[0m\n")
-                passed = "yes"
-                user_log(attempts, passed)
-                return "play_again"
-            if len(guess) != 1 and len(guess) != len(player_word):    
-                print(f"""\u001b[31mYou need to guess a letter or a word that has the length of {len(player_word)}\u001b[0m\n
-You have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.\n""")
-                continue
-            if guess in guessed:
-                print(f"""\u001b[31mYou have already guessed the letter {guess}\u001b[0m\n
-You have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.\n""")
-                continue
-            if guess in player_word:
-                print(f"\u001b[32mNice the letter '{guess}' was in the word!\n\u001b[0m")
-                guessed.append(guess)
-                print (f"You have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.\n")
-                for i in range(len(player_word)):
-                    if player_word[i] == guess:
-                        word_completion[i] = guess
-                        continue
-            else:
-                print(f"\u001b[31mThe letter '{guess}' was not in this word.\u001b[0m\n")
-                attempts += 1
-                break
-            word = "".join(word_completion).lower()
-            if word == player_word:
-                print(f"\u001b[32mCongratulations, you guessed all the letters in {player_word} and it was correct!! You did this with {max_tries - attempts} attempt(s) left\u001b[0m\n")
-                passed = "yes"
-                user_log(attempts, passed)
-                return "play_again"
-        guessed.append(guess)
-        guessed.sort()
-        print (f"You have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.")
-            
-
-    if attempts >= max_tries:
-        os.system("clear")
-        passed = "no"
-        print(f"""\nThe word was '{player_word}'. You killed the hanging man??
-
-    +---+
-    |   |
-    \u001b[31m0\u001b[0m   |
-   \u001b[31m/|\ \u001b[0m |
-   \u001b[31m/ \ \u001b[0m |
-        |
-    =========\n""")
-        user_log(attempts, passed)
-        return "play_again"
+    random_word = player_word
+    play_hangman(random_word)
 
 def easy():                             #1000 words
-    
+
     with open('/Users/dewan/School/project nano/galgje_words/easy_words.txt') as ab:
         from_list =[line.strip() for line in ab]
-    play_solo(from_list)
+    random_word = random.choice(from_list).lower()
+    play_hangman(random_word)
 
 def medium():                            #1371 words
-    
+
     with open('/Users/dewan/School/project nano/galgje_words/medium_words.txt') as ab:
         from_list =[line.strip() for line in ab]
-    play_solo(from_list)
+    random_word = random.choice(from_list).lower()
+    play_hangman(random_word)
 
 def hard():                              #222 words
 
     with open('/Users/dewan/School/project nano/galgje_words/hard_words.txt') as ab:
         from_list =[line.strip() for line in ab]
-    play_solo(from_list)
-
-def play_solo(from_list):
-
     random_word = random.choice(from_list).lower()
+    play_hangman(random_word)
+
+def play_hangman(random_word):
+
     word_completion = (len(random_word)) * ["_"] 
     attempts = 0
     max_tries = 7

@@ -50,10 +50,9 @@ Available games:                 Available apps:
                 result = guess_it()
                 if result == "quit":
                     break
-                else:
-                    again = play_again('\u001b[44mGuess that number\u001b[0m')
-                    if again == "no":
-                        break
+                again = play_again('\u001b[44mGuess that number\u001b[0m')
+                if again == "no":
+                    break
 
         elif play_game == 2:
             os.system('clear')
@@ -71,7 +70,7 @@ Available games:                 Available apps:
                 result = players()
                 if result == "quit":
                     break
-                elif result == "solo":
+                if result == "solo":
                     result2 = difficulty()
                     if result2 == "quit":
                         break
@@ -85,16 +84,14 @@ Available games:                 Available apps:
                         again = play_again('\u001b[42mThe hanging man\u001b[0m')
                         if again == "no":
                             break                        
-                    else:
-                        hard()
-                        again = play_again('\u001b[42mThe hanging man\u001b[0m')
-                        if again == "no":
-                            break
-                else:
-                    duo()
+                    hard()
                     again = play_again('\u001b[42mThe hanging man\u001b[0m')
                     if again == "no":
-                        break 
+                        break
+                duo()
+                again = play_again('\u001b[42mThe hanging man\u001b[0m')
+                if again == "no":
+                    break 
 
         elif play_game == 4:
             os.system('clear')
@@ -111,10 +108,9 @@ Available games:                 Available apps:
                 result = main_rps()
                 if result == "quit":
                     break
-                else:
-                    again = play_again('\u001b[41mRock, paper ,scissors\u001b[0m')
-                    if again == "no":
-                        break
+                again = play_again('\u001b[41mRock, paper ,scissors\u001b[0m')
+                if again == "no":
+                    break
 
 def get_time():
     format_time = datetime.now()
@@ -126,12 +122,7 @@ def play_again(game):
     loading = 0
     while True:
         again = input("\nDo you want to play again? Y/N" ).upper()
-        if not again.isalpha():
-            print("please give a valid answer with Y/N.")
-            continue
         if again == "Y":
-            print("You will be redirected to replay this game!!!")
-            time.sleep(1)
             os.system('clear')
             for x in range(4):
                 loading += 1
@@ -141,9 +132,6 @@ def play_again(game):
             return "yes"
         elif again == "N":
             os.system('clear')
-            print("\nYou will be directed to the main menu!")
-            time.sleep(1)
-            os.system('clear')
             for x in range(4):
                 loading += 1
                 print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * loading}")
@@ -152,6 +140,7 @@ def play_again(game):
             return "no"
         else:
             print("This was not an option. Please choose Y/N.")
+            os.system("clear")
             continue
 
 if __name__ == ("__main__"):

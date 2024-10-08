@@ -6,7 +6,7 @@ def return_main():
     os.system("clear")
     for x in range(4):
         times += 1
-        print("Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n" +"." * times)
+        print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * times}")
         time.sleep(1)
         os.system('clear')
     
@@ -212,20 +212,18 @@ def play_hangman(random_word,mode):
             print(f"\u001b[32mCongratulations, you guessed all the letters in {random_word} and it was correct!! You did this with {max_tries - attempts} attempt(s) left\u001b[0m\n")
             user_log(attempts, "yes",mode)
             return "play_again"
-    if attempts >= max_tries:
-        os.system("clear")
-        passed = "no"
-        print(f"""\nThe word was '{random_word}'. You killed the hanging man??
-
+    os.system("clear")
+    print(f"""\nThe word was '{random_word}'. You killed the hanging man??
+          
     +---+
     |   |
     \u001b[31m0\u001b[0m   |
-   \u001b[31m/|\ \u001b[0m |
-   \u001b[31m/ \ \u001b[0m |
+    \u001b[31m/|\ \u001b[0m |
+    \u001b[31m/ \ \u001b[0m |
         |
     =========\n""")
-        user_log(attempts, "no", mode)
-        return "play_again"
+    user_log(attempts, "no", mode)
+    return "play_again"
 
 if __name__ == ("__main__"):
     players()

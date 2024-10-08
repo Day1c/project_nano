@@ -29,17 +29,6 @@ def display_hand_player():
     """]
     return hands
 
-def get_time():
-    format_time = datetime.now()
-    return format_time.strftime('%d/%m/%Y'), format_time.strftime('%H:%M:%S')
-
-def user_log(score_player, score_npc, won):
-    user_name = input("Please give ur name to log ur score (or press enter to be unknown): ").capitalize()
-    if user_name.strip() == "":
-        user_name = "Unknown"
-    with open("/Users/dewan/School/project nano/logs/rock_paper_scissors_log.txt","a") as f:
-        f.write(f"\nUser name: {user_name}, won the game: {won}, player score: {score_player}, npc score: {score_npc}, date: {get_time()[0]}")
-
 def display_hand_npc():
     hands = ["""
         _______
@@ -69,12 +58,23 @@ def display_hand_npc():
     """]
     return hands
 
+def get_time():
+    format_time = datetime.now()
+    return format_time.strftime('%d/%m/%Y'), format_time.strftime('%H:%M:%S')
+
+def user_log(score_player, score_npc, won):
+    user_name = input("Please give ur name to log ur score (or press enter to be unknown): ").capitalize()
+    if user_name.strip() == "":
+        user_name = "Unknown"
+    with open("/Users/dewan/School/project nano/logs/rock_paper_scissors_log.txt","a") as f:
+        f.write(f"\nUser name: {user_name}, won the game: {won}, player score: {score_player}, npc score: {score_npc}, date: {get_time()[0]}")
+
 def return_main():
     times = 0
     os.system("clear")
     for x in range(4):
         times += 1
-        print("Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n" +"." * times)
+        print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * times}")
         time.sleep(1)
         os.system('clear')
 
@@ -98,12 +98,6 @@ Welcome to the game '\u001b[41mRock, paper ,scissors\u001b[0m'\n """)
         npc_answer = answers[npc_choice]
         player_choice = input("What would you like to choose? rock/paper/scissors (press q to quit): ").lower()
         os.system("clear")
-        if not player_choice.isalpha():
-            print("\u001b[31mPlease give a valid answer.\u001b[0m\n")
-            print(f"The score is player: {score_player} opponent: {score_npc}\n")
-            continue
-        else:
-            player_choice.lower()
         if player_choice == "q":                    
                 return_main()
                 return "quit"
@@ -133,12 +127,10 @@ Welcome to the game '\u001b[41mRock, paper ,scissors\u001b[0m'\n """)
             print(f"{player_line:23} {npc_line}")
     if score_npc == 2:
         print("You lost the game of '\u001b[41mRock, paper ,scissors\u001b[0m'. Try again if you think you can beat me hehehe.")
-        won = "no"
-        user_log(score_player, score_npc, won)
+        user_log(score_player, score_npc, "no")
     else:
         print(f"Congratulations you won '\u001b[41mRock, paper ,scissors\u001b[0m' against me.")
-        won = "yes"
-        user_log(score_player, score_npc, won)
+        user_log(score_player, score_npc, "yes")
     return "play_again"
 
 if __name__ == "__main__":

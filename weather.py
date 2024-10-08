@@ -10,7 +10,7 @@ def return_main():
     os.system("clear")
     for x in range(4):
         times += 1
-        print("Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n" +"." * times)
+        print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * times}")
         time.sleep(1)
         os.system('clear')
 

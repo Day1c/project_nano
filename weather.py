@@ -3,14 +3,14 @@ from datetime import datetime
 
 def get_time():
     format_time = datetime.now()
-    return format_time.strftime('%d/%m/%Y'), format_time.strftime('%H:%M:%S')
+    return format_time.strftime('%Y-%m-%d'), format_time.strftime('%H:%M:%S')
 
 def return_main():
     times = 0
     os.system("clear")
     for x in range(4):
         times += 1
-        print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * times}")
+        print(f"Returning to \u001b[33m\u001b[1m2Day's Apps!\u001b[0m!\n\n{"." * times}")
         time.sleep(1)
         os.system('clear')
 
@@ -62,7 +62,6 @@ def region_names():
     
     os.system("clear")
 
-    # print(f"{get_time()[0]} {get_time()[1]} \n")
     for i in range(0,quarter_stations):
         stations1.append(regions[i])
     for i in range(quarter_stations,quarter_stations*2):
@@ -86,7 +85,7 @@ def region_names():
 def choose_region():
     while True:
         regions = info()[1]
-        choose = input("\nWhat region would you like to check the weather on?").capitalize()
+        choose = input("\nWhat region would you like to check the weather on? ").capitalize()
         if choose in regions:
             break
         os.system("clear")
@@ -175,8 +174,6 @@ Welcome to '\u001b[45mThe weather app\u001b[0m'
         except ValueError:
             print("\u001b[31mThis was not a valid answer.\u001b[0m")
             continue
-        if choice>4 or choice<1:
-            print("\u001b[31mPlease give a corresponding number.\u001b[0m")
         if choice == 1:
             closest_region = closest_location()[0]
             min_distance = closest_location()[1]
@@ -198,6 +195,8 @@ The temperature in that city is {current_weather(closest_region)} degrees Celciu
             weatherreport = info()[0]["forecast"]["weatherreport"]
             date = weatherreport["published"]
             print(f"\u001b[35m This report was published on {date.split("T")[0]} at {date.split("T")[1]}\n {weatherreport["summary"]}\n\u001b[0m")
+        else:
+            print("\u001b[31mPlease give a corresponding number.\u001b[0m")
 
 if __name__ == "__main__":
     main_weather()

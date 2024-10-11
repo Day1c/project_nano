@@ -60,7 +60,7 @@ def display_hand_npc():
 
 def get_time():
     format_time = datetime.now()
-    return format_time.strftime('%d/%m/%Y'), format_time.strftime('%H:%M:%S')
+    return format_time.strftime('%Y-%m-%d'), format_time.strftime('%H:%M:%S')
 
 def user_log(score_player, score_npc, won):
     user_name = input("Please give ur name to log ur score (or press enter to be unknown): ").capitalize()
@@ -74,7 +74,7 @@ def return_main():
     os.system("clear")
     for x in range(4):
         times += 1
-        print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * times}")
+        print(f"Returning to \u001b[33m\u001b[1m2Day's Apps!\u001b[0m!\n\n{"." * times}")
         time.sleep(1)
         os.system('clear')
 

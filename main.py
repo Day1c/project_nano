@@ -12,18 +12,18 @@ def main_menu():
     while True:
         
         print(f"""\u001b[1m{get_time()[0]} {get_time()[1]}\u001b[0m
-\u001b[33m   ___ _             ____     ___            
-  / _ \ | __ _ _   _|___ \   /   \__ _ _   _ 
- / /_)/ |/ _` | | | | __) | / /\ / _` | | | |
-/ ___/| | (_| | |_| |/ __/ / /_// (_| | |_| |
-\/    |_|\__,_|\__, |_____/___,' \__,_|\__, |
-               |___/                   |___/ 
+\u001b[33m   ___   ____             _          ___                    
+  |__ \ / __ \____ ___  _( )_____   /   |  ____  ____  _____
+  __/ // / / / __ `/ / / /// ___/  / /| | / __ \/ __ \/ ___/
+ / __// /_/ / /_/ / /_/ / (__  )  / ___ |/ /_/ / /_/ (__  ) 
+/____/_____/\__,_/\__, / /____/  /_/  |_/ .___/ .___/____/  
+                 /____/                /_/   /_/            
 
-Welcome to \u001b[1mPlay2Day!\u001b[0m
+Welcome to \u001b[1m2Day's Apps!\u001b[0m
 
 Available games:                 Available apps:
 (1) \u001b[44mGuess that number\u001b[0m            (2) \u001b[45mThe weather app\u001b[0m 
-(3) \u001b[42mThe hanging man\u001b[0m              (4) \u001b[40m...\u001b[0m
+(3) \u001b[42mThe hanging man\u001b[0m              (4) \u001b[46mTo do app\u001b[0m
 (5) \u001b[41mRock, paper ,scissors\u001b[0m        (6) Coming soon...
 (7) Coming soon...
 """  
@@ -95,7 +95,7 @@ Available games:                 Available apps:
 
         elif play_game == 4:
             os.system('clear')
-            print("You chose the app '\u001b[40m...\u001b[0m'!!!\n")
+            print("You chose the app '\u001b[46mTo do app\u001b[0m'!!!\n")
             time.sleep(1.5)
             os.system("clear")
 
@@ -114,9 +114,7 @@ Available games:                 Available apps:
 
 def get_time():
     format_time = datetime.now()
-    date = format_time.strftime('%d/%m/%Y')
-    current_time = format_time.strftime('%H:%M:%S')
-    return date,current_time
+    return format_time.strftime('%Y-%m-%d'), format_time.strftime('%H:%M:%S')
 
 def play_again(game):
     loading = 0
@@ -134,7 +132,7 @@ def play_again(game):
             os.system('clear')
             for x in range(4):
                 loading += 1
-                print(f"Returning to \u001b[33m\u001b[1mPlay2Day!\u001b[0m!\n\n{"." * loading}")
+                print(f"Returning to \u001b[33m\u001b[1m2Day's Apps!\u001b[0m!\n\n{"." * loading}")
                 time.sleep(1)
                 os.system('clear')
             return "no"

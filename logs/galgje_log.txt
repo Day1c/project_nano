@@ -1,4 +1,0 @@
-
-User name: Unknown, mode: duo, guessed the word: yes, mistakes: 0, date: 08/10/2024
-User name: De rader, mode: duo, guessed the word: yes, mistakes: 0, date: 2024-10-11
-User name: Unknown, mode: duo, guessed the word: no, mistakes: 7, date: 2024-10-11

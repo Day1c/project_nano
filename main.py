@@ -5,6 +5,7 @@ from galgje import *
 from weather import *
 from datetime import datetime
 from rock_paper_scissors import main_rps
+from to_do import *
 import os,time
 
 def main_menu():
@@ -98,6 +99,7 @@ Available games:                 Available apps:
             print("You chose the app '\u001b[46mTo do app\u001b[0m'!!!\n")
             time.sleep(1.5)
             os.system("clear")
+            main_todo()
 
         elif play_game == 5:
             os.system('clear')

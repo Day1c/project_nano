@@ -1,4 +1,4 @@
-import requests,os,json,time,math
+import requests,os,time,math
 from datetime import datetime
 
 def get_time():
@@ -39,11 +39,9 @@ def info():
             continue
         if "temperature" in response:
             regions.append(response["regio"])
-    
-    for response in response_data['actual']['stationmeasurements']:
-        lat.append(response["lat"])
-        lon.append(response["lon"])
-        
+            lat.append(response["lat"])
+            lon.append(response["lon"])
+   
     for i in range(len(regions)):
         locations[regions[i]] = lat[i], lon[i]
 
@@ -117,7 +115,6 @@ def closest_location():
         if distance < min_distance:
             min_distance = distance
             closest_region = location
-
     return closest_region, min_distance
 
 def current_weather(closest_region):

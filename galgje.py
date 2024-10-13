@@ -98,7 +98,7 @@ Welcome to '\u001b[42mThe hanging man\u001b[0m' """)
         if choice == "1" or choice == "2":
             break
         os.system("clear")
-        print("You did not give a valid answer.\n")
+        print("\u001b[31mYou did not give a valid answer.\u001b[0m\n")
     os.system("clear")
     if choice == "1":
         print("You chose to play '\u001b[42mThe hanging man\u001b[0m' alone!\n")
@@ -116,7 +116,7 @@ def difficulty():
             os.system('clear')
             break
         os.system('clear')
-        print("You did not give a valid answer. Try again!\n")
+        print("\u001b[31mYou did not give a valid answer.\u001b[0m\n")
 
     if user_difficulty == "1":
         os.system('clear')
@@ -137,8 +137,8 @@ def duo():
         if player_word.isalpha() and len(player_word) >=5:
             break
         os.system("clear")
-        print("Please give a valid word thats longer than 5 letters.\n")
-    print(f"""The word you chose for the other player to guess is '{player_word}'. In 5 seconds you can give the laptop to the other player.""")
+        print("\u001b[31mPlease give a valid word thats longer than 5 letters.\u001b[0m\n")
+    print(f"""\nThe word you chose for the other player to guess is '{player_word}'. In 5 seconds you can give the laptop to the other player.""")
     time.sleep(5)
     os.system("clear")
 
@@ -180,17 +180,17 @@ def play_hangman(random_word,mode):
         os.system("clear")
 
         if not guess.isalpha():
-            print(f"\u001b[31mPlease give a valid guess\u001b[0m\nYou guessed the letters:{guessed} and have {max_tries - attempts} attempts left.\n")
+            print(f"\u001b[31mPlease give a valid guess\u001b[0m\n\nYou guessed the letters:{guessed} and have {max_tries - attempts} attempts left.\n")
             continue
         if guess == random_word:
             print(f"\u001b[32mCongratulations you guessed the word '{random_word}' with {attempts} mistake(s)!!\u001b[0m\n")
             user_log(attempts, "yes", mode)
             return "play_again"
         if len(guess) != 1 and len(guess) != len(random_word):    
-            print(f"""\u001b[31mYou didn't guess a valid word length {len(random_word)}\u001b[0m\nYou have guessed the letters {guessed} and have {max_tries - attempts} attempts left.\n""")
+            print(f"""\u001b[31mYou didn't guess a word with {len(random_word)} letters.\u001b[0m\nYou have guessed the letters {guessed} and have {max_tries - attempts} attempts left.\n""")
             continue
         if guess in guessed:
-            print(f"""\u001b[31mYou have already guessed {guess}\u001b[0m\nYou have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.\n""")
+            print(f"""\u001b[31mYou have already guessed {guess}\u001b[0m\n\nYou have guessed the letters {guessed} and you have {max_tries - attempts} attempts left.\n""")
             continue
 
         guessed.append(guess)
@@ -217,9 +217,9 @@ def play_hangman(random_word,mode):
           
     +---+
     |   |
-    \u001b[31m0\u001b[0m  |
-    \u001b[31m/|\ \u001b[0m|
-    \u001b[31m/ \ \u001b[0m|
+    \u001b[31m0 \u001b[0m  |
+   \u001b[31m/|\ \u001b[0m |
+   \u001b[31m/ \ \u001b[0m |
         |
     =========\n""")
     user_log(attempts, "no", mode)

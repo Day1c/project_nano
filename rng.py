@@ -50,6 +50,7 @@ Welcome to the game '\u001b[44mGuess that number\u001b[0m'\n
         except ValueError:
             os.system('clear')
             print("\u001b[31mYou did not give a valid answer. Try again!\u001b[0m\n")
+            print(f"You guessed the numbers {guessed_numbers} and still got {max_tries-attempts} tries left.\n")
             continue
         if guess in guessed_numbers:
             os.system('clear')

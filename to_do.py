@@ -1,7 +1,5 @@
 import os, time
 from datetime import datetime
-#Due dates
-#priority
 
 def return_main():
     times = 0
@@ -53,7 +51,7 @@ def new_goal():
             break
         else:
             if len(due_date) != 10:
-                print("\u001b[31mYou did not give a valid date\u001b[0m")
+                print("\u001b[31mYou did not give a valid date\u001b[0m\n")
                 continue
             try:
                 year,month,day = due_date.split("/")
@@ -133,10 +131,10 @@ def edit_goal(goals,due_dates, dates_made, every_goal):
 
 def read_goal():
     with open ("/Users/dewan/School/project nano/goals_todo.txt") as df:
-        alles = [line.strip()for line in df]
-    goals = [line.split("_")[0] for line in alles]
-    due_date = [line.split("_")[1] for line in alles]
-    date_made = [line.split("_")[2] for line in alles]
+        lines = [line.strip()for line in df]
+    goals = [line.split("_")[0] for line in lines]
+    due_date = [line.split("_")[1] for line in lines]
+    date_made = [line.split("_")[2] for line in lines]
 
     return goals,due_date, date_made
 
